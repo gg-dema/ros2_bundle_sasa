@@ -6,11 +6,31 @@ RUN apt-get update \
  && apt-get install -y \
  locales \
  lsb-release \
- tree 
-
+ tree \
+ git \
+ terminator 
+ 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN dpkg-reconfigure locales
 
+RUN apt-get update \
+ && apt install -y \
+ ros-${ROS_DISTRO}-navigation \
+ ros-${ROS_DISTRO}-dwa-local-planner \
+ ros-${ROS_DISTRO}-teb-local-planner \
+ ros-${ROS_DISTRO}-robot-localization \
+ ros-${ROS_DISTRO}-rtabmap \
+ ros-${ROS_DISTRO}-rtabmap-ros
+
+RUN mkdir -p Sasa/src
+
+WORKdIR Sasa/
+
+RUN git clone https://github.com/stereolabs/zed-ros-interfaces.git src/zed-ros-interfaces  \
+ && rosdep install --from-path src --ignore-src -r -y \
+ && /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
+
+ 
 
 
 #RUN mkdir -p ss_aachem/src
