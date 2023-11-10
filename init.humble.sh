@@ -1,4 +1,4 @@
-xhost +
+#xhost +
 
 docker run \
  --rm -it \
@@ -10,4 +10,4 @@ docker run \
  --net=host \
  --gpus=all \
  --runtime=nvidia \
- humble_test:v1
+ humble_test:v2
