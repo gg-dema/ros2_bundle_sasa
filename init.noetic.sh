@@ -10,4 +10,4 @@ docker run \
  --net=host \
  --gpus=all \
  --runtime=nvidia \
- humble_test:v2
+ noetic_test:v1

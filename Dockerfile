@@ -1,29 +1,26 @@
-ARG ROS_DISTRO=humble
+ARG ROS_DISTRO=noetic
 FROM osrf/ros:${ROS_DISTRO}-desktop-full
 
 #min setup
 RUN apt-get update \
  && apt-get install -y \
- lsb-release \
  locales \
- python3 \
- tree \
- terminator \
- ros-${ROS_DISTRO}-rmw-cyclonedds-cpp
+ lsb-release \
+ tree 
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN dpkg-reconfigure locales
 
 
 
-RUN mkdir -p ss_aachem/src
+#RUN mkdir -p ss_aachem/src
 
-WORKDIR ./ss_aachem/src
-RUN  git clone -b eloquent-devel https://git.fh-aachen.de/Wiesen/rqt_joy \
- && cd .. \
- && colcon build
+#WORKDIR ./ss_aachem/src
+#RUN  git clone -b eloquent-devel https://git.fh-aachen.de/Wiesen/rqt_joy \
+# && cd .. \
+# && colcon build
 
-WORKDIR ../
+# WORKDIR ../
 
 #ENTRYPOINT ["./../ros_entrypoint.sh"]
 
