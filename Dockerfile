@@ -8,6 +8,7 @@ RUN apt-get update \
  lsb-release \
  tree \
  git \
+ ssh \
  terminator 
  
 ARG DEBIAN_FRONTEND=noninteractive
@@ -26,9 +27,9 @@ RUN mkdir -p Sasa/src
 
 WORKdIR Sasa/
 
-RUN git clone https://github.com/stereolabs/zed-ros-interfaces.git src/zed-ros-interfaces  \
+RUN git clone https://github.com/stereolabs/zed-ros-wrapper.git src/zed-ros-wrapper  \
  && rosdep install --from-path src --ignore-src -r -y \
- && /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
+ && /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make -DCMAKE_BUILD_TYPE=Release'
 
  
 
