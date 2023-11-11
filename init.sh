@@ -7,7 +7,8 @@ docker run \
  --env=RMW_IMPLEMENTATION=rmw_cyclonedds_cpp \
  --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
  --volume=/run/user/1000/gdm/Xauthority:/root/.Xauthority \
+ --volume="/my_pkg/src":"/sasa_test" \
  --net=host \
  --gpus=all \
  --runtime=nvidia \
-  noetic_test:v2 
+ sasa:0.0 
